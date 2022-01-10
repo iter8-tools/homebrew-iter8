@@ -17,7 +17,7 @@ jobs:
           desc "Kubernetes release engineering"
           homepage "https://iter8.tools"
           url "https://github.com/iter8-tools/iter8.git",
-              tag:      "${VERSION}",
+              tag:      "${VERSION}"
           license "Apache-2.0"
           head "https://github.com/iter8-tools/iter8.git", branch: "master"
 
@@ -27,6 +27,7 @@ jobs:
             # Don't dirty the git tree
             rm_rf ".brew_home"
 
+            system "VERSION=${VERSION}"
             system "make", "build"
             bin.install "bin/iter8"
           end
