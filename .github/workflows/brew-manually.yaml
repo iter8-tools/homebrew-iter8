@@ -18,8 +18,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        VERSION=${{ github.event.inputs.ref }}
-        REVISION=${{ github.event.inputs.revision }}
+        export VERSION=${{ github.event.inputs.ref }}
+        export REVISION=${{ github.event.inputs.revision }}
         envsubst < iter8.rb.tpl > iter8.rb
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
