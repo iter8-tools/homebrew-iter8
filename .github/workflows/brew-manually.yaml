@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        VERSION=${{ github.event.client_payload.ref }}
+        VERSION=${{ github.event.inputs.ref }}
         cat >iter8.rb <<EOF
         class Iter8 < Formula
           desc "Kubernetes release engineering"
