@@ -5,7 +5,10 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: 'Iter8 tag'
+        description: 'Iter8 repo tag'
+        required: true
+      revision:
+        description: 'Git commit id'
         required: true
 
 jobs:
@@ -16,12 +19,14 @@ jobs:
     - uses: actions/checkout@v2
     - run: |
         VERSION=${{ github.event.inputs.ref }}
+        REVISION=${{ github.event.inputs.revision }}
         cat >iter8.rb <<EOF
         class Iter8 < Formula
           desc "Kubernetes release engineering"
           homepage "https://iter8.tools"
           url "https://github.com/iter8-tools/iter8.git",
-              tag:      "${VERSION}"
+              tag:      "${VERSION}",
+              revision: "${REVISION}"
           license "Apache-2.0"
           head "https://github.com/iter8-tools/iter8.git", branch: "master"
 
@@ -42,6 +47,8 @@ jobs:
             version_output = shell_output(bin/"iter8 version 2>&1")
             assert_match "GitTreeState:\"clean\"", version_output
             if build.stable?
+              revision = stable.instance_variable_get(:@resource).instance_variable_get(:@specs)[:revision]
+              assert_match "GitCommit:\"#{revision}\"", version_output
               assert_match "Version:\"v#{version}\"", version_output
             end
           end
