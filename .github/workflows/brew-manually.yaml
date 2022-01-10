@@ -1,8 +1,12 @@
-name: Update brew formula
+name: Update brew formula manually
+
 
 on:
-  repository_dispatch:
-    types: [release]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Iter8 tag'
+        required: true
 
 jobs:
   update-brew:
