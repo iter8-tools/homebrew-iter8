@@ -7,11 +7,11 @@ class Iter8 < Formula
   license "Apache-2.0"
   head "https://github.com/iter8-tools/iter8.git", branch: "master"
 
-  depends_on "go" => :build
-
   if OS.mac?
     url "https://github.com/iter8-tools/iter8/releases/download/v0.8.16/iter8-darwin-amd64.tar.gz"
     sha256 "d85d6ab1e73937d811d1eb750c1960d154132ac55e5e92fc281567d98aa251c4"
+  else
+    depends_on "go" => :build
   end
 
   def install
