@@ -9,17 +9,25 @@ class Iter8 < Formula
 
   depends_on "go" => :build
 
+  if OS.mac?
+    url "https://github.com/iter8-tools/iter8/releases/download/v0.8.16/iter8-darwin-amd64.tar.gz"
+    sha256 "d85d6ab1e73937d811d1eb750c1960d154132ac55e5e92fc281567d98aa251c4"
+  end
+
   def install
-    ENV["CGO_ENABLED"] = "0"
+    if OS.mac?
+    else
+      ENV["CGO_ENABLED"] = "0"
 
-    ldflags = %W[
-      -X github.com/iter8-tools/iter8/basecli.version=v#{version}
-      -X github.com/iter8-tools/iter8/basecli.gitCommit=#{Utils.git_head()}
-      -X github.com/iter8-tools/iter8/basecli.gitTreeState=clean
-    ]
+      ldflags = %W[
+        -X github.com/iter8-tools/iter8/basecli.version=v#{version}
+        -X github.com/iter8-tools/iter8/basecli.gitCommit=#{Utils.git_head()}
+        -X github.com/iter8-tools/iter8/basecli.gitTreeState=clean
+      ]
 
-    system "go", "build", *std_go_args(ldflags: ldflags), "-o", "bin/iter8", "./"
-    bin.install "bin/iter8"
+      system "go", "build", *std_go_args(ldflags: ldflags), "-o", "iter8", "./"
+    end
+    bin.install "iter8"
   end
 
   test do
