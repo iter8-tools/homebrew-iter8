@@ -10,6 +10,9 @@ on:
       revision:
         description: 'Git commit id'
         required: true
+      sha:
+        description: 'SHA256 for mac'
+        required: true
 
 jobs:
   update-brew:
@@ -20,6 +23,7 @@ jobs:
     - run: |
         export VERSION=${{ github.event.inputs.ref }}
         export REVISION=${{ github.event.inputs.revision }}
+        export SHA=${{ github.event.inputs.sha }}
         envsubst < iter8.rb.tpl > iter8.rb
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:

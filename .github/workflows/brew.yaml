@@ -13,6 +13,7 @@ jobs:
     - run: |
         export VERSION=${{ github.event.client_payload.ref }}
         export REVISION=${{ github.event.client_payload.sha }}
+        export SHA=${{ github.event.client_payload.shaformac }}
         envsubst < iter8.rb.tpl > iter8.rb
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
