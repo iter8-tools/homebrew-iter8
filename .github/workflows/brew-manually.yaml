@@ -30,6 +30,7 @@ jobs:
     needs: update-brew
     steps:
     - run: |
+        brew unlink go@1.15
         brew tap iter8-tools/iter8
         brew install iter8
         brew test iter8
@@ -39,6 +40,7 @@ jobs:
     needs: update-brew
     steps:
     - run: |
+        brew unlink go@1.15
         brew tap iter8-tools/iter8
         brew install iter8
         brew test iter8        
