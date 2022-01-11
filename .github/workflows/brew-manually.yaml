@@ -34,13 +34,3 @@ jobs:
         brew tap iter8-tools/iter8
         brew install iter8
         brew test iter8
-  test-brew-on-macos-10-5:
-    name: Test brew formula on macos-10.5
-    runs-on: macos-10.5
-    needs: update-brew
-    steps:
-    - run: |
-        brew unlink go@1.15
-        brew tap iter8-tools/iter8
-        brew install iter8
-        brew test iter8        
