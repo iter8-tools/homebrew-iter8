@@ -16,4 +16,22 @@ jobs:
         envsubst < iter8.rb.tpl > iter8.rb
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Apply changes to brew formula        
+        commit_message: Apply changes to brew formula
+  test-brew-on-macos-11:
+    name: Test brew formula on macos-11
+    runs-on: macos-11
+    needs: update-brew
+    steps:
+    - run: |
+        brew tap iter8-tools/iter8
+        brew install iter8
+        brew test iter8
+  test-brew-on-macos-10.5:
+    name: Test brew formula on macos-10.5
+    runs-on: macos-10.5
+    needs: update-brew
+    steps:
+    - run: |
+        brew tap iter8-tools/iter8
+        brew install iter8
+        brew test iter8        
