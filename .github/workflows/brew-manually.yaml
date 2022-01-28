@@ -25,6 +25,7 @@ jobs:
         export REVISION=${{ github.event.inputs.revision }}
         export SHA=${{ github.event.inputs.sha }}
         envsubst < iter8.rb.tpl > iter8.rb
+        envsubst < iter8.rb.tpl > iter8.rb@${VERSION}
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Apply changes to brew formula
@@ -36,4 +37,7 @@ jobs:
     - run: |
         brew tap iter8-tools/iter8
         brew install iter8
+        brew test iter8
+        brew uninstall iter8
+        brew install iter8@${{ github.event.inputs.ref }}
         brew test iter8
