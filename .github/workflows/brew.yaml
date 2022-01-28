@@ -17,7 +17,7 @@ jobs:
         envsubst < iter8.rb.tpl > iter8.rb
         export SEMVER=${VERSION//v}
         export MAJORMINOR=${SEMVER%.*}
-        export SUFFIX=${MAJORMINOR//.}
+        export SUFFIX=AT${MAJORMINOR//.}
         envsubst < iter8.rb.tpl > iter8@${MAJORMINOR}.rb
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
