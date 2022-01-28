@@ -1,11 +1,10 @@
-class Iter8 < Formula
+class Iter8${SUFFIX} < Formula
   desc "Kubernetes release engineering"
   homepage "https://iter8.tools"
   url "https://github.com/iter8-tools/iter8.git",
       tag:      "${VERSION}",
       revision: "${REVISION}"
   license "Apache-2.0"
-  head "https://github.com/iter8-tools/iter8.git", branch: "master"
 
   if OS.mac?
     url "https://github.com/iter8-tools/iter8/releases/download/${VERSION}/iter8-darwin-amd64.tar.gz"
