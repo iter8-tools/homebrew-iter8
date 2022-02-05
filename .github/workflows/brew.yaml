@@ -30,7 +30,7 @@ jobs:
     - run: |
         brew tap iter8-tools/iter8
         brew install iter8
-        brew test iter8
+        brew test --verbose --debug iter8
         brew uninstall iter8
         brew untap iter8-tools/iter8
     - run: |
@@ -39,6 +39,6 @@ jobs:
         export SEMVER=${VERSION//v}
         export MAJORMINOR=${SEMVER%.*}
         brew install iter8@${MAJORMINOR}
-        brew test iter8@${MAJORMINOR}
+        brew test --verbose --debug iter8@${MAJORMINOR}
         brew uninstall iter8@${MAJORMINOR}
         brew untap iter8-tools/iter8
