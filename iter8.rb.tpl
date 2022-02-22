@@ -30,15 +30,10 @@ class Iter8${SUFFIX} < Formula
   end
 
   test do
-    system "#{bin}/iter8", "hub", "-e", "load-test"
-    assert File.directory? testpath/"load-test/templates"
+    system "#{bin}/iter8", "hub", "-c", "load-test-http"
+    assert File.directory? testpath/"load-test-http/templates"
 
     version_output = shell_output(bin/"iter8 version 2>&1")
     assert_match "GitTreeState:\"clean\"", version_output
-    if build.stable?
-      revision = stable.instance_variable_get(:@resource).instance_variable_get(:@specs)[:revision]
-      assert_match "GitCommit:\"#{revision}\"", version_output
-      assert_match "Version:\"v#{version}\"", version_output
-    end
   end
 end
