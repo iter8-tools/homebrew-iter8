@@ -19,9 +19,8 @@ class Iter8${SUFFIX} < Formula
       ENV["CGO_ENABLED"] = "0"
 
       ldflags = %W[
-        -X github.com/iter8-tools/iter8/basecli.version=v#{version}
-        -X github.com/iter8-tools/iter8/basecli.gitCommit=#{Utils.git_head()}
-        -X github.com/iter8-tools/iter8/basecli.gitTreeState=clean
+        -X github.com/iter8-tools/iter8/base.Version=v#{version}
+        -X github.com/iter8-tools/iter8/cmd.gitCommit=#{Utils.git_head()}
       ]
 
       system "go", "build", *std_go_args(ldflags: ldflags), "-o", "iter8", "./"
@@ -30,10 +29,7 @@ class Iter8${SUFFIX} < Formula
   end
 
   test do
-    system "#{bin}/iter8", "hub", "-c", "load-test-http"
-    assert File.directory? testpath/"load-test-http/templates"
-
-    version_output = shell_output(bin/"iter8 version 2>&1")
-    assert_match "GitTreeState:\"clean\"", version_output
+    system "#{bin}/iter8", "hub"
+    assert File.directory? testpath/"charts/load-test-http/templates"
   end
 end
