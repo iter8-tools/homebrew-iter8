@@ -2,13 +2,13 @@ class Iter8AT010 < Formula
   desc "Kubernetes release engineering"
   homepage "https://iter8.tools"
   url "https://github.com/iter8-tools/iter8.git",
-      tag:      "v0.10.12",
-      revision: "d380479980bb4626d61db33fd4e410dbfd4571bb"
+      tag:      "v0.10.13",
+      revision: "a0532fe8e600a2a96044a4b5c3e57216fa80010c"
   license "Apache-2.0"
 
   if OS.mac?
-    url "https://github.com/iter8-tools/iter8/releases/download/v0.10.12/iter8-darwin-amd64.tar.gz"
-    sha256 "464a6ecd394584832bab4535e631d92184cb975b24737744e212e7aae52f1b6f"
+    url "https://github.com/iter8-tools/iter8/releases/download/v0.10.13/iter8-darwin-amd64.tar.gz"
+    sha256 "99188e9e22877c2fa4740f0c6a18e7a53cd7af1416ac1fef832d28d1482f8981"
   else
     depends_on "go" => :build
   end
