@@ -1,4 +1,4 @@
-class Iter8 < Formula
+class Iter8AT011 < Formula
   desc "Kubernetes release engineering"
   homepage "https://iter8.tools"
   url "https://github.com/iter8-tools/iter8.git",
