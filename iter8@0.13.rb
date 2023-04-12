@@ -8,7 +8,7 @@ class Iter8AT013 < Formula
 
   if OS.mac?
     url "https://github.com/iter8-tools/iter8/releases/download/v0.13.13/iter8-darwin-amd64.tar.gz"
-    sha256 "21f48d43053d8d9d4cbd3f44cd413f5e17adaa7dac8188e7b52d33176e2076a0"
+    sha256 "395eab8353f372c7fe428b1ccecb440cfb04fed4b278799bcfb1eb5703a7fc6f"
   else
     depends_on "go" => :build
   end
